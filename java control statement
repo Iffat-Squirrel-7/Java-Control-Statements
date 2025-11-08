@@ -1,0 +1,79 @@
+package ict.22;  // change "22" to your actual subpackage name
+
+// 1️⃣ SumClass
+class SumClass {
+    static double sumSeries() {
+        double i = 1.0, sum = 0.0;
+        do {
+            sum += i;
+            i -= 0.1;
+        } while (i >= 0.1);
+        return Math.round(sum * 10.0) / 10.0; // rounding
+    }
+}
+
+// 2️⃣ DivisorMultipleClass
+class DivisorMultipleClass {
+    static int gcd(int a, int b) {
+        int temp;
+        do {
+            temp = a % b;
+            a = b;
+            b = temp;
+        } while (b != 0);
+        return a;
+    }
+
+    static int lcm(int a, int b) {
+        return (a * b) / gcd(a, b);
+    }
+}
+
+// 3️⃣ NumberConversionClass
+class NumberConversionClass {
+    static String toBinary(int n) {
+        return Integer.toBinaryString(n);
+    }
+
+    static String toHex(int n) {
+        return Integer.toHexString(n).toUpperCase();
+    }
+
+    static String toOctal(int n) {
+        return Integer.toOctalString(n);
+    }
+
+    static int toDecimal(String value, int base) {
+        return Integer.parseInt(value, base);
+    }
+}
+
+// 4️⃣ CustomPrintClass
+class CustomPrintClass {
+    void pr(String message) {
+        System.out.println("[Output] " + message);
+    }
+}
+
+// 5️⃣ MainClass
+public class MainClass {
+    public static void main(String[] args) {
+        CustomPrintClass a = new CustomPrintClass();
+
+        // SumClass
+        double sum = SumClass.sumSeries();
+        a.pr("Sum of 1 + 0.9 + ... + 0.1 = " + sum);
+
+        // DivisorMultipleClass
+        int x = 12, y = 18;
+        a.pr("GCD of " + x + " & " + y + " = " + DivisorMultipleClass.gcd(x, y));
+        a.pr("LCM of " + x + " & " + y + " = " + DivisorMultipleClass.lcm(x, y));
+
+        // NumberConversionClass
+        int num = 25;
+        a.pr("Binary of 25 = " + NumberConversionClass.toBinary(num));
+        a.pr("Hex of 25 = " + NumberConversionClass.toHex(num));
+        a.pr("Octal of 25 = " + NumberConversionClass.toOctal(num));
+        a.pr("Binary 11001 to Decimal = " + NumberConversionClass.toDecimal("11001", 2));
+    }
+}
